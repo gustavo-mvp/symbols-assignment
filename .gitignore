@@ -35,5 +35,4 @@ node_modules
 # Parcel files
 .parcel-cache
 .cache
-yarn.lock
 dist
