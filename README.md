@@ -1,19 +1,22 @@
-# Symbols Starter Kit
-Example dev setup (boilerplate) to use [DOMQL](https://github.com/domql/domql). You can also check live editor [Playground](https://domql.com/playground/).
+# Symbols Assignment
 
-### Setup
+## How to run the CLI file
 
-1. Clone the repo
+### Globally
+1. Install the package globally into your system
 ```
-git clone git@github.com:symbo-ls/starter-kit.git
-```
-
-2. Install scripts
-```
-yarn
+npm install -g .
 ```
 
-3. Run the project
+2. Now you can user anywhere:
 ```
-yarn start
+create-symbols-grid -x 10 -y 8 -d ./my-project
 ```
+
+### Without installing
+
+1. Run `yarn` to install `commander` package
+2. Make the file executable `chmod +x cli.js`
+3. Run the script: `./cli.js -x 10 -y 8 -d ./grid-selector`
+
+It will clone the "starter-kit" repo and make changes to apply the Grid Selector
