@@ -1,28 +1,26 @@
-'use strict'
+"use strict";
 
-import { create, Flex } from 'smbls'
+import { create, Flex } from "smbls";
 
-import designSystem from './designSystem'
-import * as components from './components'
-import pages from './pages'
+import designSystem from "./designSystem";
+import * as components from "./components";
+import pages from "./pages";
 
-create({
-  extend: Flex,
-
-  props: {
-    theme: 'document',
-    flow: 'column',
-    height: '100vh',
-    align: 'center space-between'
+create(
+  {
+    extend: Flex,
+    props: {
+      theme: "document",
+      flow: "column",
+      height: "100vh",
+      align: "center",
+      justifyContent: "center",
+      background: 'url("/images/background.jpg)"',
+    },
   },
-
-  Header: {},
-
-  content: {},
-
-  Footer: { text: 'Footer' }
-}, {
-  designSystem,
-  components,
-  pages
-})
+  {
+    designSystem,
+    components,
+    pages,
+  }
+);

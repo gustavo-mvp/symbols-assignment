@@ -1,12 +1,12 @@
-'use strict'
 
+"use strict";
 export default {
-  '/': {
-    H1: { text: 'Hello Symbols' },
-    P: { text: 'Lorem ipsum dolor sit amet' }
+  "/": {
+    GridSelector: {
+      props: {
+        rows: 8,
+        columns: 10,
+      }
+    },
   },
-  '/about': {
-    H3: { text: 'This is Symbols starter-kit' },
-    P: { text: 'Lorem ipsum dolor sit amet' }
-  }
-}
+};

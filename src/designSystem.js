@@ -1,23 +1,23 @@
-'use strict'
+"use strict";
 
-import ICONS from '@symbo.ls/default-icons'
+import ICONS from "@symbo.ls/default-icons";
 
 /**
  * Colors
  * @tutorial https://docs.symbols.app/color
  */
 const COLOR = {
-  transparent: 'transparent',
-  black: 'black',
-  white: 'white',
-  orange: '#E98232'
-}
+  transparent: "transparent",
+  black: "black",
+  white: "white",
+  orange: "#E98232",
+};
 
 /**
  * Gradients
  * @tutorial https://docs.symbols.app/color
  */
-const GRADIENT = {}
+const GRADIENT = {};
 
 /**
  * Themes
@@ -25,32 +25,45 @@ const GRADIENT = {}
  */
 const THEME = {
   document: {
-    '@dark': {
-      color: 'white',
-      background: 'black'
+    "@dark": {
+      color: "white",
+      background: "black",
     },
-    '@light': {
-      background: 'white',
-      color: 'black'
+    "@light": {
+      background: "white",
+      color: "black",
     },
-    '@midnight': {
-      background: '#112233',
-      color: 'white'
-    }
-  }
-}
+    "@midnight": {
+      background: "#112233",
+      color: "white",
+    },
+  },
+};
 
 /**
  * Fonts
  * @tutorial https://docs.symbols.app/font
  */
-const FONT = {}
+const FONT = {
+  Roboto: [
+    {
+      url: "https://fonts.googleapis.com/css2?family=Roboto:wght@400,700&display=swap",
+      isVariable: true,
+    },
+  ],
+};
 
 /**
  * Font families
  * @tutorial https://docs.symbols.app/font
  */
-const FONT_FAMILY = {}
+const FONT_FAMILY = {
+  Roboto: {
+    isDefault: true,
+    value: ["Roboto"],
+    type: "sans-serif",
+  },
+};
 
 /**
  * Typography
@@ -59,15 +72,15 @@ const FONT_FAMILY = {}
  */
 const TYPOGRAPHY = {
   base: 16,
-  ratio: 1.2
-}
+  ratio: 1.2,
+};
 
 /**
  * Spacing
  * @tutorial https://docs.symbols.app/spacing
  * @tutorial https://docs.symbols.app/sequence
  */
-const SPACING = {}
+const SPACING = {};
 
 const options = {
   verbose: false,
@@ -76,8 +89,8 @@ const options = {
   useFontImport: true,
   useVariable: true,
   useSvgSprite: true,
-  useIconSprite: true
-}
+  useIconSprite: true,
+};
 
 export default {
   ...options,
@@ -88,5 +101,5 @@ export default {
   TYPOGRAPHY,
   SPACING,
   FONT,
-  FONT_FAMILY
-}
+  FONT_FAMILY,
+};
