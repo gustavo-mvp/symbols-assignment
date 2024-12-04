@@ -1,4 +1,3 @@
-
 import { Button, Flex, Grid } from "smbls";
 
 const getCellCoord = (key) => key.replace("cell", "").split(",");
@@ -7,7 +6,7 @@ const CellButton = {
   extend: Button,
   props: ({ key }, state) => {
     const [x, y] = getCellCoord(key);
-    const isSelected = state.parent.selectedCells?.has(`${x},${y}`);
+    const isSelected = state.parent?.selectedCells?.has(`${x},${y}`);
 
     return {
       width: "26px",
@@ -53,12 +52,10 @@ export const GridSelector = {
     color: "black",
     padding: "20px 26px",
     borderRadius: "26px",
-    boxShadow: '0px 5px 35px -10px #00000059'
+    boxShadow: "0px 5px 35px -10px #00000059",
   },
 
-  state: {
-    selectedCells: new Set(),
-  },
+  state: {},
 
   Title: {
     tag: "h1",
@@ -68,10 +65,26 @@ export const GridSelector = {
     text: "Grid Selection",
   },
 
-  CellGrid: {
-    extend: Grid,
-    props: ({ parent: { props } }) => {
+  children: ({ props }) => {
+    const coords = [];
+    for (let y = 0; y < props.rows; y++) {
+      for (let x = 0; x < props.columns; x++) {
+        coords.push(`${x},${y}`);
+      }
+    }
+
+    const cells = coords.reduce((acc, item) => {
       return {
+        ...acc,
+        [`cell${item}`]: {
+          extend: CellButton,
+        },
+      };
+    }, {});
+
+    return {
+      extend: Grid,
+      props: {
         width: "auto",
         height: "auto",
         templateColumns: `repeat(${props.columns}, 1fr)`,
@@ -79,31 +92,33 @@ export const GridSelector = {
         gap: "4px",
         padding: "10px 6px",
         boxShadow: "0px 0px 50px 0px #0000000D",
-      };
-    },
-    childExtend: {
-      on: {
-        click: (_event, element, state) => {
-          const [x, y] = getCellCoord(element.key);
-          const newSelection = new Set();
-          for (let i = 0; i <= x; i++) {
-            for (let j = 0; j <= y; j++) {
-              newSelection.add(`${i},${j}`);
+      },
+      ...cells,
+      childExtend: {
+        on: {
+          click: (_event, element, state) => {
+            const [x, y] = getCellCoord(element.key);
+            const newSelection = new Set();
+            for (let i = 0; i <= x; i++) {
+              for (let j = 0; j <= y; j++) {
+                newSelection.add(`${i},${j}`);
+              }
             }
-          }
-          state.parent.update({
-            selectedCells: newSelection,
-          });
+            state.parent.clean()
+            state.parent.update({
+              selectedCells: newSelection,
+            });
+          },
         },
       },
-    },
+    };
   },
 
   Footer: {
     extend: Flex,
     props: {
       justifyContent: "space-between",
-      padding: 0,
+      padding: "0",
       fontSize: "12px",
     },
 
@@ -136,33 +151,6 @@ export const GridSelector = {
           return state.parent.selectedCells?.size ?? 0;
         },
       },
-    },
-  },
-
-  on: {
-    stateInit: (element, state, context, updateOptions) => {
-      const coords = [];
-      for (let y = 0; y < element.props.rows; y++) {
-        for (let x = 0; x < element.props.columns; x++) {
-          coords.push(`${x},${y}`);
-        }
-      }
-
-      const cells = coords.reduce((acc, item) => {
-        return {
-          ...acc,
-          [`cell${item}`]: {
-            extend: CellButton,
-          },
-        };
-      }, {});
-
-      element.CellGrid = {
-        ...element.CellGrid,
-        ...cells,
-      };
-
-      return true;
     },
   },
 };
